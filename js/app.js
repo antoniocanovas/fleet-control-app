@@ -36,9 +36,9 @@ const App = {
 
     navigate(view) {
         if (this.state.currentView === view) return;
-        
+
         this.state.currentView = view;
-        
+
         // Update UI
         this.dom.navItems.forEach(item => {
             item.classList.toggle('active', item.getAttribute('data-view') === view);
@@ -71,6 +71,9 @@ const App = {
                 break;
             case 'vehicles':
                 this.renderVehicles();
+                break;
+            case 'fuel':
+                this.renderFuel();
                 break;
             default:
                 this.dom.contentView.innerHTML = `
@@ -211,6 +214,85 @@ const App = {
                     </tbody>
                 </table>
             </div>
+        `;
+    },
+
+    renderFuel() {
+        this.dom.contentView.innerHTML = `
+            <div class="view-header">
+                <h2>Fuel Logs & Consolidation</h2>
+                <div class="action-group" style="display: flex; gap: 1rem;">
+                    <button class="secondary-btn" style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border-color); padding: 0.6rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                        <i data-lucide="upload-cloud"></i> Import SOLRED/CEPSA
+                    </button>
+                    <button class="primary-btn">
+                        <i data-lucide="plus"></i> Add Entry
+                    </button>
+                </div>
+            </div>
+            
+            <div class="summary-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                <div class="card">
+                    <h3>Consolidated Consumption</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Last 30 days based on invoice imports</p>
+                    <div style="font-size: 1.8rem; font-weight: 700; margin-top: 1rem; color: var(--accent-gold);">4,280.50 L</div>
+                </div>
+                <div class="card">
+                    <h3>Average Cost</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Average price per Liter (Excl. VAT)</p>
+                    <div style="font-size: 1.8rem; font-weight: 700; margin-top: 1rem; color: var(--success);">1.42 €/L</div>
+                </div>
+            </div>
+
+            <div class="card table-container">
+                <table class="grid-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Vehicle</th>
+                            <th>Provider</th>
+                            <th>Location</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Audit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026-03-05</td>
+                            <td>7742-LMX</td>
+                            <td><span class="provider solred">SOLRED</span></td>
+                            <td>Station E-45, Madrid</td>
+                            <td>450.00 L</td>
+                            <td>639,00 €</td>
+                            <td><i data-lucide="check-circle" style="color: var(--success); width: 16px;"></i></td>
+                        </tr>
+                        <tr>
+                            <td>2026-03-04</td>
+                            <td>1289-KJS</td>
+                            <td><span class="provider cepsa">CEPSA</span></td>
+                            <td>A-2 km 103, Guadalajara</td>
+                            <td>320.50 L</td>
+                            <td>458,31 €</td>
+                            <td><i data-lucide="check-circle" style="color: var(--success); width: 16px;"></i></td>
+                        </tr>
+                        <tr>
+                            <td>2026-03-01</td>
+                            <td>4560-PBC</td>
+                            <td><span class="provider solred">SOLRED</span></td>
+                            <td>N-VI km 45, Segovia</td>
+                            <td>120.00 L</td>
+                            <td>170,40 €</td>
+                            <td><i data-lucide="alert-circle" style="color: var(--accent-gold); width: 16px;" title="Weekend refuel detected"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <style>
+                .provider { font-size: 0.7rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
+                .provider.solred { background: #ffcc00; color: #000; }
+                .provider.cepsa { background: #e30613; color: #fff; }
+            </style>
         `;
     },
 
