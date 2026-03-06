@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FleetControl | Premium Fleet Management</title>
+    <meta name="description" content="State-of-the-art fleet control and fuel management system for modern enterprises.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i data-lucide="shield-check" class="logo-icon"></i>
+                    <span class="logo-text">Fleet<span>Control</span></span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" data-view="dashboard">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li data-view="vehicles">
+                        <i data-lucide="truck"></i>
+                        <span>Vehicles</span>
+                    </li>
+                    <li data-view="drivers">
+                        <i data-lucide="users"></i>
+                        <span>Drivers</span>
+                    </li>
+                    <li data-view="fuel">
+                        <i data-lucide="fuel"></i>
+                        <span>Fuel Logs</span>
+                    </li>
+                    <li data-view="reports">
+                        <i data-lucide="bar-chart-3"></i>
+                        <span>Reports</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">AC</div>
+                    <div class="user-info">
+                        <span class="user-name">Antonio Canovas</span>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-container">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search vehicles, drivers...">
+                </div>
+                <div class="actions">
+                    <button class="icon-btn" title="Notifications">
+                        <i data-lucide="bell"></i>
+                        <span class="badge"></span>
+                    </button>
+                    <button class="icon-btn" title="Settings">
+                        <i data-lucide="settings"></i>
+                    </button>
+                </div>
+            </header>
+
+            <section id="content-view" class="content-view">
+                <!-- Content will be injected here by app.js -->
+                <div class="loader">Loading...</div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/app.js" type="module"></script>
+    <script>
+        // Initialize Lucide icons on start
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
